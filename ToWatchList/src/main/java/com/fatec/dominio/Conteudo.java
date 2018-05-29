@@ -14,7 +14,7 @@ class Conteudo extends EntidadeDominio {
     private boolean assistido;
     private Avaliacao avaliacao;
     private Prioridade prioridade;
-    private FicaTecnica fichaTecnica;
+    private FichaTecnica fichaTecnica;
 
     public Conteudo(boolean assistido) {
         this.assistido = assistido;
@@ -44,11 +44,11 @@ class Conteudo extends EntidadeDominio {
         this.prioridade = prioridade;
     }
 
-    public FicaTecnica getFichaTecnica() {
+    public FichaTecnica getFichaTecnica() {
         return fichaTecnica;
     }
 
-    public void setFichaTecnica(FicaTecnica fichaTecnica) {
+    public void setFichaTecnica(FichaTecnica fichaTecnica) {
         this.fichaTecnica = fichaTecnica;
     }
     

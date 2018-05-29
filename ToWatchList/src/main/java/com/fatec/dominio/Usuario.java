@@ -14,16 +14,16 @@ import java.util.List;
  */
 public class Usuario extends Pessoa {
     
-    private String apelido;
+    private String nomeUsuario;
     private String email;
     private String senha;
     private boolean status;
     private List <Categoria> categorias;
     private Favoritos favoritos;
 
-    public Usuario(String apelido, String email, String senha, boolean status, String nome) {
+    public Usuario(String nomeUsuario, String email, String senha, boolean status, String nome) {
         super(nome);
-        this.apelido = apelido;
+        this.nomeUsuario = nomeUsuario;
         this.email = email;
         this.senha = senha;
         this.status = status;
@@ -34,12 +34,12 @@ public class Usuario extends Pessoa {
         categorias.add(new Categoria(Util.CATEGORIA3, Util.DESCRICAO_CATEGORIA3));
     }
 
-    public String getApelido() {
-        return apelido;
+    public String getNomeUsuario() {
+        return nomeUsuario;
     }
 
-    public void setApelido(String apelido) {
-        this.apelido = apelido;
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
     }
 
     public String getEmail() {
