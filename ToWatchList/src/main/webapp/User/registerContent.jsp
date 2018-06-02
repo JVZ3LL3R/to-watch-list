@@ -92,7 +92,7 @@
                                  <div class="input-group-prepend">
                                     <span class="input-group-text" id="genre-addon"><i class="fab fa-napster fa-2x"></i></span>
                                 </div>
-                                <select class="custom-select form-control" id="generoSelect">
+                                <select class="custom-select" id="generoSelect">
                                     <option selected>Ação</option>
                                     <option value="1">Anime</option>
                                     <option value="2">Comédia</option>
@@ -164,4 +164,9 @@
             });
           };
         </script>
+        <script>
+            $(".dropdown-item").click(function() {
+   $(this).toggleClass("active");
+});
+</script>
 </html>

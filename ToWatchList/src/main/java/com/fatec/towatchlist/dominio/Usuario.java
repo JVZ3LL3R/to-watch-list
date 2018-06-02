@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.fatec.dominio;
+package com.fatec.towatchlist.dominio;
 
-import com.fatec.util.Util;
+import com.towatchlist.fatec.util.Util;
 import java.util.List;
 
 /**
