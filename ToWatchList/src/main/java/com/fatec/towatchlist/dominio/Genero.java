@@ -9,7 +9,7 @@ package com.fatec.towatchlist.dominio;
  *
  * @author josev
  */
-class Genero extends EntidadeDominio {
+public class Genero extends EntidadeDominio {
     
     private String tipo;
 

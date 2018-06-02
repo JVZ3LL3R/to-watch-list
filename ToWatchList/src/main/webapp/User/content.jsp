@@ -5,8 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="/Includes/Bootstrap.jsp"%>
-<%@include file="/Includes/userHeader.jsp"%>
+<%@include file="/includes/Bootstrap.jsp"%>
+<%@include file="/includes/userHeader.jsp"%>
 <!DOCTYPE html>
 <html>
     <head>

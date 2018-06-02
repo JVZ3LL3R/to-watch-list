@@ -9,7 +9,7 @@ package com.fatec.towatchlist.dominio;
  *
  * @author josev
  */
-class Classificacao extends EntidadeDominio {
+public class Classificacao extends EntidadeDominio {
     
       private int faixaEtaria;
 

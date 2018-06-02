@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author josev
  */
-class FichaTecnica {
+public class FichaTecnica {
     
     private Diretor diretor;
     private String nome;
@@ -23,18 +23,6 @@ class FichaTecnica {
     private Trailer trailer;
     private Classificacao classificacao;
     private List<Genero> genero;
-
-    public FichaTecnica(Diretor diretor, String nome, String sinopse, String paisOrigem, Duration duracao, ImagemCapa imgCapa, Trailer trailer, Classificacao classificacao, List<Genero> genero) {
-        this.diretor = diretor;
-        this.nome = nome;
-        this.sinopse = sinopse;
-        this.paisOrigem = paisOrigem;
-        this.duracao = duracao;
-        this.imgCapa = imgCapa;
-        this.trailer = trailer;
-        this.classificacao = classificacao;
-        this.genero = genero;
-    }
 
     public Diretor getDiretor() {
         return diretor;

@@ -9,7 +9,7 @@ package com.fatec.towatchlist.dominio;
  *
  * @author josev
  */
-class ImagemCapa extends EntidadeDominio {
+public class ImagemCapa extends EntidadeDominio {
     
     private String path;
 

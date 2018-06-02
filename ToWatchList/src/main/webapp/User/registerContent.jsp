@@ -5,14 +5,14 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file= "/Includes/Bootstrap.jsp"%>
-<%@include file= "/Includes/userHeader.jsp"%>
+<%@include file= "/includes/Bootstrap.jsp"%>
+<%@include file= "/includes/userHeader.jsp"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <style>
-            #classIndSelect, #generoSelect{
+            #classIndSelect, #generoSelect, #categorySelect{
                 height: 46px;
             }
             .star-rating {
@@ -30,7 +30,7 @@
                     <h1 class="display-7">Cadastrar Conteúdo</h1>
                     <hr class="my-3"> 
                 </div> <!-- Page Header-->
-                <form action="">
+                <form action="#" method="post">
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="nome">Nome</label>
@@ -94,7 +94,7 @@
                                 </div>
                                 <select class="custom-select" id="generoSelect">
                                     <option selected>Ação</option>
-                                    <option value="1">Anime</option>
+                                    <option value="1">Aventura</option>
                                     <option value="2">Comédia</option>
                                     <option value="3">Drama</option>
                                     <option value="4">Terror</option>
@@ -122,15 +122,17 @@
                             </div> 
                         </div> <!-- form-group -->
                         <div class="form-group col-md-4">
-                            <label for="avaliacao">Avaliação</label>
-                           <div class="star-rating"> 
-                                <span class="fas fa-star fa-2x" data-rating="1"></span>
-                                <span class="fas fa-star fa-2x" data-rating="2"></span>
-                                <span class="fas fa-star fa-2x" data-rating="3"></span>
-                                <span class="fas fa-star fa-2x" data-rating="4"></span>
-                                <span class="fas fa-star fa-2x" data-rating="5"></span>
-                                <input type="hidden" name="whatever" class="rating-value" value="3">
-                          </div>
+                            <label for="categoria">Categoria</label>
+                             <div class="input-group mb-3">
+                                 <div class="input-group-prepend">
+                                    <span class="input-group-text" id="list-addon"><i class="far fa-list-alt fa-2x"></i></span>
+                                </div>
+                                <select class="custom-select" id="categorySelect">
+                                    <option selected>Animes</option>
+                                    <option value="1">Filmes</option>
+                                    <option value="2">Séries</option>
+                                </select>
+                            </div>  
                         </div> <!-- form-group -->
                     </div> <!-- row 3 -->
                     <div class="row">
@@ -143,11 +145,24 @@
                                  <textarea rows="3" cols="177" placeholder="Iron Man, Thor, the Hulk and the rest of the Avengers unite to battle their most powerful enemy yet -- the evil Thanos. On a mission to collect all six Infinity Stones, Thanos plans to use the artifacts to inflict his twisted will on reality. The fate of the planet and existence itself has never been more uncertain as everything the Avengers have fought for has led up to this moment."></textarea>
                             </div>  
                         </div> <!-- form-group -->
-                    </div>
+                    </div> <!-- row 4 -->
+                    <div class="row">
+                        <div class="form-group col-lg-auto">
+                            <label for="avaliacao">Avaliação</label>
+                            <div class="star-rating"> 
+                                 <span class="fas fa-star fa-2x" data-rating="1"></span>
+                                 <span class="fas fa-star fa-2x" data-rating="2"></span>
+                                 <span class="fas fa-star fa-2x" data-rating="3"></span>
+                                 <span class="fas fa-star fa-2x" data-rating="4"></span>
+                                 <span class="fas fa-star fa-2x" data-rating="5"></span>
+                                 <input type="hidden" id ="avaliacao" name="avalicao" class="rating-value" value="avaliacao">
+                           </div>
+                        </div>
+                    </div> <!-- row 5 -->
                     <form method="POST" action="#" enctype="multipart/form-data">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block">Salvar</button>
-                            <button type="submit" class="btn btn-danger btn-block">Cancelar</button>
+                            <button type="submit" class="btn btn-primary btn-block" id="operacao" value="salvar">Salvar</button>
+                            <button type="submit" class="btn btn-danger btn-block" id="operacaoCancelar" value="cancelar">Cancelar</button>
                         </div>
                 </form> <!-- Form-action -->
             </div> <!-- container-fluid-->
@@ -164,9 +179,4 @@
             });
           };
         </script>
-        <script>
-            $(".dropdown-item").click(function() {
-   $(this).toggleClass("active");
-});
-</script>
 </html>

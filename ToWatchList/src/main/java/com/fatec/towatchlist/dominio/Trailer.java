@@ -9,7 +9,7 @@ package com.fatec.towatchlist.dominio;
  *
  * @author josev
  */
-class Trailer extends EntidadeDominio {
+public class Trailer extends EntidadeDominio {
     
     private String url;
 

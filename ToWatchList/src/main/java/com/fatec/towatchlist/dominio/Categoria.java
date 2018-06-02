@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author josev
  */
-class Categoria extends EntidadeDominio {
+public class Categoria extends EntidadeDominio {
     
     private String nome;
     private String descricao;

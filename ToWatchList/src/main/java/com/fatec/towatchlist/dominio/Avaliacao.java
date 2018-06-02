@@ -9,15 +9,10 @@ package com.fatec.towatchlist.dominio;
  *
  * @author josev
  */
-class Avaliacao {
+public class Avaliacao {
     
     private String descAvaliacao;
     private double nota;
-
-    public Avaliacao(String descAvaliacao, double nota) {
-        this.descAvaliacao = descAvaliacao;
-        this.nota = nota;
-    }
 
     public String getDescAvaliacao() {
         return descAvaliacao;

@@ -10,7 +10,7 @@ package com.fatec.towatchlist.dominio;
  *
  * @author josev
  */
-class Diretor extends Pessoa {
+public class Diretor extends Pessoa {
 
     private String paisOrigem;
 

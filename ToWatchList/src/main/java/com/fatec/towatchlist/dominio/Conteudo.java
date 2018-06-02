@@ -9,7 +9,7 @@ package com.fatec.towatchlist.dominio;
  *
  * @author josev
  */
-class Conteudo extends EntidadeDominio {
+public class Conteudo extends EntidadeDominio {
     
     private boolean assistido;
     private Avaliacao avaliacao;
