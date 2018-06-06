@@ -5,9 +5,20 @@
  */
 package com.fatec.towatchlist.controller;
 
+import com.fatec.towatchlist.command.AlterarCommand;
+import com.fatec.towatchlist.command.ConsultarCommand;
+import com.fatec.towatchlist.command.ExcluirCommand;
+import com.fatec.towatchlist.command.ICommand;
+import com.fatec.towatchlist.command.SalvarCommand;
+import com.fatec.towatchlist.viewhelper.IViewHelper;
+import com.fatec.towatchlist.viewhelper.content.ContentViewHelper;
+import com.fatec.towatchlist.viewhelper.user.UserViewHelper;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,63 +27,32 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author josev
  */
+
 public class toWatchListServlet extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            
-        }
+    
+    private Map<String, ICommand> commands;
+    private Map<String, IViewHelper> viewHelpers;
+    
+    public toWatchListServlet () {
+        String basePath = "/ToWatchList/";
+        
+        // Inicializando mapa de commands
+        commands = new HashMap<String, ICommand>();
+        commands.put("SALVAR", new SalvarCommand());
+        commands.put("ALTERAR", new AlterarCommand());
+        commands.put("CONSULTAR", new ConsultarCommand());
+        commands.put("EXCLUIR", new ExcluirCommand());
+        
+        // Inicializando mapa de viewHelpers
+        viewHelpers = new HashMap<String, IViewHelper>();
+        viewHelpers.put(basePath.concat("user/save"), new UserViewHelper());
+        viewHelpers.put(basePath.concat("/ToWatchList/registerContent/save"), new ContentViewHelper());
+        
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+    
 }

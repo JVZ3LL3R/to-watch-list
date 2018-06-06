@@ -26,7 +26,7 @@
             <input type="password" name="" placeholder="MyPassword">
             <input type="submit" name="" value="Login">
             <input type="button" name="Testar" value="Testar">
-            <a href="/user/registerUser.jsp">Don't have an account?</a>
+            <a href="/ToWatchList/user/registerUser.jsp">Don't have an account?</a>
         </form>
     </div>
     </body>
