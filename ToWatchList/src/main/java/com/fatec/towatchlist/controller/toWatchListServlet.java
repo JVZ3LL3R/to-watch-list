@@ -46,7 +46,7 @@ public class toWatchListServlet extends HttpServlet {
         // Inicializando mapa de viewHelpers
         viewHelpers = new HashMap<String, IViewHelper>();
         viewHelpers.put(basePath.concat("user/save"), new UserViewHelper());
-        viewHelpers.put(basePath.concat("/ToWatchList/registerContent/save"), new ContentViewHelper());
+        viewHelpers.put(basePath.concat("registerContent/save"), new ContentViewHelper());
         
     }
 

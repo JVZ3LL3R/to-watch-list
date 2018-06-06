@@ -30,7 +30,7 @@
                     <h1 class="display-7">Cadastrar Conteúdo</h1>
                     <hr class="my-3"> 
                 </div> <!-- Page Header-->
-                <form action="/ToWatchList/registerContent/save" method="post">
+                <form action="/registerContent/save" method="post">
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="nome">Nome</label>
