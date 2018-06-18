@@ -6,6 +6,7 @@
 package com.fatec.towatchlist.dominio;
 
 import com.towatchlist.fatec.util.Util;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,18 +22,17 @@ public class Usuario extends Pessoa {
     private List <Categoria> categorias;
     private Favoritos favoritos;
 
-    public Usuario(String nomeUsuario, String email, String senha, boolean status, String nome) {
-        super(nome);
-        this.nomeUsuario = nomeUsuario;
-        this.email = email;
-        this.senha = senha;
-        this.status = status;
+    public Usuario() {
+        
+        categorias = new ArrayList< Categoria>();
         
         // Add the tree default categories to the each User of the system
-        categorias.add(new Categoria(Util.CATEGORIA1, Util.DESCRICAO_CATEGORIA1));
-        categorias.add(new Categoria(Util.CATEGORIA2, Util.DESCRICAO_CATEGORIA2));
-        categorias.add(new Categoria(Util.CATEGORIA3, Util.DESCRICAO_CATEGORIA3));
+        categorias.add(new Categoria(Util.CATEGORY1, Util.CATEGORY_DESCRIPTION1));
+        categorias.add(new Categoria(Util.CATEGORY2, Util.CATEGORY_DESCRIPTION2));
+        categorias.add(new Categoria(Util.CATEGORY3, Util.CATEGORY_DESCRIPTION3));
     }
+
+
 
     public String getNomeUsuario() {
         return nomeUsuario;

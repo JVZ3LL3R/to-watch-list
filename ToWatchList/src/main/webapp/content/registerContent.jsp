@@ -30,7 +30,7 @@
                     <h1 class="display-7">Cadastrar Conteúdo</h1>
                     <hr class="my-3"> 
                 </div> <!-- Page Header-->
-                <form action="/registerContent/save" method="post">
+                <form action="SaveContent" method="post">
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="nome">Nome</label>
@@ -47,7 +47,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="diretor-addon"><i class="fab fa-pied-piper-hat fa-2x"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" id="txtDiretor" placeholder="Stan Lee" aria-labelledby="diretor" aria-describedby="diretor-addon">
+                                    <input type="text" class="form-control" id="txtNomeDiretor" name="txtNomeDiretor" placeholder="Stan Lee" aria-labelledby="diretor" aria-describedby="diretor-addon">
                                 </div>  
                         </div> <!-- form-group -->
                         <div class="form-group col-md-4">
@@ -56,7 +56,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="duracao-addon"><i class="fas fa-hourglass fa-2x"></i></span>
                                     </div>
-                                    <input type="time" class="form-control" id="floatDuracao" placeholder="120mn" aria-labelledby="duracao" aria-describedby="duracao-addon">
+                                    <input type="time" class="form-control" id="doubleDuracao" name="doubleDuracao" placeholder="120mn" aria-labelledby="duracao" aria-describedby="duracao-addon">
                                 </div> 
                         </div> <!-- form-group -->
                     </div> <!-- row 1-->
@@ -67,7 +67,7 @@
                                  <div class="input-group-prepend">
                                     <span class="input-group-text" id="rating-addon"><i class="fas fa-smile fa-2x"></i></span>
                                 </div>
-                                <select class="custom-select form-control" id="classIndSelect">
+                                 <select class="custom-select form-control" id="txtClassificacaoInd" name="txtClassificacaoInd" style="width: 46px">
                                     <option selected>Livre para todos os Públicos</option>
                                     <option value="1">Não recomendado para menores de 10 anos</option>
                                     <option value="2">Não recomendado para menores de 12 anos</option>
@@ -81,9 +81,9 @@
                             <label for="paisOrigem">País de Origem</label>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="calendar-addon"><i class="fas fa-map-marker-alt fa-2x"></i></span>
+                                    <span class="input-group-text" id="marker-addon"><i class="fas fa-map-marker-alt fa-2x"></i></span>
                                 </div>
-                                <input type="text" class="form-control" id="txtPaisOrigem" placeholder="Estados Unidos da América "aria-labelledby="paisOrigem" aria-describedby="pais-addon">
+                                <input type="text" class="form-control" id="txtPaisOrigem" name="txtPaisOrigem" placeholder="Estados Unidos da América "aria-labelledby="paisOrigem" aria-describedby="pais-addon">
                             </div>  
                         </div> <!-- form-group -->
                          <div class="form-group col-md-4">
@@ -92,7 +92,7 @@
                                  <div class="input-group-prepend">
                                     <span class="input-group-text" id="genre-addon"><i class="fab fa-napster fa-2x"></i></span>
                                 </div>
-                                <select class="custom-select" id="generoSelect">
+                                <select class="custom-select" id="txtGenero" name="txtGenero" style="width: 46px">
                                     <option selected>Ação</option>
                                     <option value="1">Aventura</option>
                                     <option value="2">Comédia</option>
@@ -107,18 +107,18 @@
                             <label for="image">Poster URL</label>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="image-addon"><i class="fas fa-camera-retro fa-2x"></i></span>
+                                    <span class="input-group-text" id="camera-addon"><i class="fas fa-camera-retro fa-2x"></i></span>
                                 </div>
-                                <input type="text" class="form-control" id="txtImageUrl" placeholder="http://www.image.com/avengers.jpg" aria-labelledby="image" aria-describedby="image-addon">
+                                <input type="text" class="form-control" id="txtImageUrl" name="txtImageUrl" placeholder="http://www.image.com/avengers.jpg" aria-labelledby="image" aria-describedby="image-addon">
                             </div>  
                         </div> <!-- form-group -->
                         <div class="form-group col-md-4">
                             <label for="trailer">Trailer URL</label>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="stickyNote-addon"><i class="fab fa-youtube fa-2x"></i></span>
+                                    <span class="input-group-text" id="youtube-addon"><i class="fab fa-youtube fa-2x"></i></span>
                                 </div>
-                                <input type="text" class="form-control" id="trailerUrl" placeholder="https://www.youtube.com/watch?v=QwievZ1Tx-8" aria-labelledby="trailer" aria-describedby="trailer-addon">
+                                <input type="text" class="form-control" id="trailerUrl" name="trailerUrl" placeholder="https://www.youtube.com/watch?v=QwievZ1Tx-8" aria-labelledby="trailer" aria-describedby="trailer-addon">
                             </div> 
                         </div> <!-- form-group -->
                         <div class="form-group col-md-4">
@@ -127,7 +127,7 @@
                                  <div class="input-group-prepend">
                                     <span class="input-group-text" id="list-addon"><i class="far fa-list-alt fa-2x"></i></span>
                                 </div>
-                                <select class="custom-select" id="categorySelect">
+                                <select class="custom-select" id="txtCategoria" name="txtCategoria" style="width: 46px">
                                     <option selected>Animes</option>
                                     <option value="1">Filmes</option>
                                     <option value="2">Séries</option>
@@ -142,7 +142,7 @@
                                  <div class="input-group-prepend">
                                     <span class="input-group-text" id="sinopse-addon"><i class="fas fa-sticky-note fa-2x"></i></span>
                                 </div>
-                                 <textarea rows="3" cols="177" placeholder="Iron Man, Thor, the Hulk and the rest of the Avengers unite to battle their most powerful enemy yet -- the evil Thanos. On a mission to collect all six Infinity Stones, Thanos plans to use the artifacts to inflict his twisted will on reality. The fate of the planet and existence itself has never been more uncertain as everything the Avengers have fought for has led up to this moment."></textarea>
+                                 <textarea rows="3" cols="177" id="txtSinopse" name="txtSinopse" placeholder="Iron Man, Thor, the Hulk and the rest of the Avengers unite to battle their most powerful enemy yet -- the evil Thanos. On a mission to collect all six Infinity Stones, Thanos plans to use the artifacts to inflict his twisted will on reality. The fate of the planet and existence itself has never been more uncertain as everything the Avengers have fought for has led up to this moment."></textarea>
                             </div>  
                         </div> <!-- form-group -->
                     </div> <!-- row 4 -->
@@ -161,8 +161,8 @@
                     </div> <!-- row 5 -->
                     <form method="POST" action="#" enctype="multipart/form-data">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block" id="operacao" value="salvar">Salvar</button>
-                            <button type="submit" class="btn btn-danger btn-block" id="operacaoCancelar" value="cancelar">Cancelar</button>
+                            <button type="submit" class="btn btn-primary btn-block" id="operacao" name="operacao" value="SALVAR">Salvar</button>
+                            <button type="submit" class="btn btn-danger btn-block" id="operacao" name="operacao" value="cancelar">Cancelar</button>
                         </div>
                 </form> <!-- Form-action -->
             </div> <!-- container-fluid-->

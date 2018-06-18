@@ -19,13 +19,13 @@
         <div class="loginbox">
         <img src="/ToWatchList/img/avatar.png" class="avatar">
         <h1>Login</h1>
-        <form>
-            <p>Username</p>
-            <input type="text" name="" placeholder="Z3ll3R">
+        <form action="Login" method="post">
+            <p>Email</p>
+            <input type="text" name="emailUsr" placeholder="meu@email.com">
             <p>Password</p>
-            <input type="password" name="" placeholder="MyPassword">
-            <input type="submit" name="" value="Login">
-            <input type="button" name="Testar" value="Testar">
+            <input type="password" name="senhaUsr" placeholder="MyPassword">
+            <input type="submit" name="operacao" value="LOGIN">
+            <input type="button" name="operacao" value="TESTAR">
             <a href="/ToWatchList/user/registerUser.jsp">Don't have an account?</a>
         </form>
     </div>

@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">  
     <servlet>
-        <servlet-name>toWatchListServlet</servlet-name>
-        <servlet-class>com.fatec.towatchlist.controller.toWatchListServlet</servlet-class>
+        <servlet-name>Servlet</servlet-name>
+        <servlet-class>com.fatec.towatchlist.controller.Servlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>toWatchListServlet</servlet-name>
-        <url-pattern>/toWatchListServlet</url-pattern>
+        <servlet-name>Servlet</servlet-name>
+        <url-pattern>/user/SaveUser</url-pattern>
     </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>Servlet</servlet-name>
+        <url-pattern>/user/Login</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Servlet</servlet-name>
+        <url-pattern>/content/SaveContent</url-pattern>
+    </servlet-mapping>    
+            
     <session-config>
         <session-timeout>
             30

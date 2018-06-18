@@ -18,7 +18,7 @@ public class FichaTecnica {
     private String nome;
     private String sinopse;
     private String paisOrigem;
-    private Duration duracao;
+    private String duracao;
     private ImagemCapa imgCapa;
     private Trailer trailer;
     private Classificacao classificacao;
@@ -56,11 +56,11 @@ public class FichaTecnica {
         this.paisOrigem = paisOrigem;
     }
 
-    public Duration getDuracao() {
+    public String getDuracao() {
         return duracao;
     }
 
-    public void setDuracao(Duration duracao) {
+    public void setDuracao(String duracao) {
         this.duracao = duracao;
     }
 

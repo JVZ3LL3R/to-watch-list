@@ -18,6 +18,10 @@ public class Diretor extends Pessoa {
         super(nome);
         this.paisOrigem = paisOrigem;
     }
+    
+    public Diretor(){
+        
+    }
 
     public String getPaisOrigem() {
         return paisOrigem;

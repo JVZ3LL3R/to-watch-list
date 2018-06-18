@@ -30,7 +30,7 @@
             <h1 class="display-4">Cadastrar Usuário</h1>
             <hr class="my-3"> 
         </div> <!-- Page Header-->
-        <form action="/ToWatchList/user/save" method="post">
+        <form action="SaveUser" method="post">
             <div class="form-group col-md-4">
                 <label for="nomeUsr">Nome</label>
                 <input type="text" class="form-control" id="nomeUsr"  name="nomeUsr" placeholder="Ex.: José Victor" aria-labelledby="nomeUsr">
@@ -52,8 +52,8 @@
                 <input type="text" class="form-control" id="senhaUsr2"  name="senhaUsr2" placeholder="Ex.: password123" aria-labelledby="senhaUsr2">
             </div>
             <div class="button-group col-md-4">
-                <button type="submit" id="operacap" value="salvar" class="btn btn-light">Cadastrar</button>
-                <button type="submit" id ="operacaoCancelar" value="cancelar" class="btn btn-light">Cancelar</button>                
+                <button type="submit" id="operacao" name="operacao" value="SALVAR" class="btn btn-light">Cadastrar</button>
+                <button type="submit" id ="operacao" name ="operacao" value="CANCELAR" class="btn btn-light">Cancelar</button>                
             </div>
         </form>
     </body>

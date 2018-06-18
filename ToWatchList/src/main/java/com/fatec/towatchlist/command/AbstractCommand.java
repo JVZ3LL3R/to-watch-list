@@ -5,15 +5,15 @@
  */
 package com.fatec.towatchlist.command;
 
-import com.fatec.towatchlist.aplicacao.Resultado;
-import com.fatec.towatchlist.dominio.EntidadeDominio;
+import com.fatec.towatchlist.fachada.Fachada;
+import com.fatec.towatchlist.fachada.IFachada;
 
 /**
  *
  * @author josev
  */
-public interface ICommand {
+abstract class AbstractCommand implements ICommand {
     
-    public Resultado execute (EntidadeDominio entidadeDominio);
+    protected IFachada facade = new Fachada();
     
 }

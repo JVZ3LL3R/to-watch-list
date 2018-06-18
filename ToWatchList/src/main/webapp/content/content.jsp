@@ -13,9 +13,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <form method="POST" action="#" enctype="multipart/form-data">
+        <form enctype="multipart/form-data">
             <div class="form-group">
-                <button type="submit" class="btn btn-outline-success btn-block" id="operacao" value="salvar">Adicionar Conteúdo</button>
+                <a href ="/ToWatchList/content/registerContent.jsp" style="text-decoration:none"><button type="button" class="btn btn-outline-success btn-block" name="operacao" id="operacao" value="SALVAR">Adicionar Conteúdo</button></a>
             </div>
         </form> <!-- Form-action -->
     </body>

@@ -16,6 +16,10 @@ public class Genero extends EntidadeDominio {
     public Genero(String tipo) {
         this.tipo = tipo;
     }
+    
+    public Genero() {
+        
+    }
 
     public String getTipo() {
         return tipo;
