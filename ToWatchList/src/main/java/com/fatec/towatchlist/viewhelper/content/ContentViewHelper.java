@@ -7,6 +7,7 @@ package com.fatec.towatchlist.viewhelper.content;
 
 import com.fatec.towatchlist.aplicacao.Resultado;
 import com.fatec.towatchlist.dominio.Avaliacao;
+import com.fatec.towatchlist.dominio.Categoria;
 import com.fatec.towatchlist.dominio.Classificacao;
 import com.fatec.towatchlist.dominio.Conteudo;
 import com.fatec.towatchlist.dominio.Diretor;
@@ -36,12 +37,12 @@ public class ContentViewHelper implements IViewHelper {
         String contentName = request.getParameter("txtNomeConteudo");
         String directorName = request.getParameter("txtNomeDiretor");
         String duration = request.getParameter("doubleDuracao");
-        String contentClassification = request.getParameter("txtClassificacao");
+        String contentClassification = request.getParameter("txtClassificacaoInd");
         String country = request.getParameter("txtPaisOrigem");
         String contentGenre = request.getParameter("txtGenero");
         String posterUrl = request.getParameter("txtImageUrl");
         String trailerUrl = request.getParameter("trailerUrl");
-        String category = request.getParameter("txtCategoria");
+        String categoryId = request.getParameter("txtCategoria");
         String overview = request.getParameter("txtSinopse");
         String contentRating = request.getParameter("avalicao");
         
@@ -52,6 +53,7 @@ public class ContentViewHelper implements IViewHelper {
         Genero genre = new Genero();
         ImagemCapa poster = new ImagemCapa();
         Trailer trailer = new Trailer();
+        Categoria category = new Categoria();
         List < Genero > genres = new ArrayList < Genero > ();
         
         director.setNome(directorName);
@@ -64,7 +66,7 @@ public class ContentViewHelper implements IViewHelper {
         
         trailer.setUrl(trailerUrl);
         
-        genre.setTipo(contentGenre);
+        genre.setNomeGenero(contentGenre);
         genres.add(genre);
         
         classification.setId(Integer.parseInt(contentClassification));
@@ -83,6 +85,9 @@ public class ContentViewHelper implements IViewHelper {
         content.setFichaTecnica(fichaTecnica);
         content.setAvaliacao(rating);
         content.setAssistido(Util.CONTENT_NOT_WATCHED);
+        
+        category.setId(Integer.parseInt(categoryId));
+        content.setCategoria(category);
         
         return content;
         

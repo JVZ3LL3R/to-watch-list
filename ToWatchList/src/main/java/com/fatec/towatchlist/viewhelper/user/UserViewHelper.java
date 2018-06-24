@@ -6,12 +6,23 @@
 package com.fatec.towatchlist.viewhelper.user;
 
 import com.fatec.towatchlist.aplicacao.Resultado;
+import com.fatec.towatchlist.dao.CategoryDAO;
+import com.fatec.towatchlist.dao.ClassificationDAO;
+import com.fatec.towatchlist.dao.GenreDAO;
+import com.fatec.towatchlist.dao.IDAO;
+import com.fatec.towatchlist.dominio.Categoria;
+import com.fatec.towatchlist.dominio.Classificacao;
 import com.fatec.towatchlist.dominio.EntidadeDominio;
+import com.fatec.towatchlist.dominio.Genero;
 import com.fatec.towatchlist.dominio.Usuario;
 import com.fatec.towatchlist.viewhelper.IViewHelper;
 import com.towatchlist.fatec.util.Util;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -63,12 +74,38 @@ public class UserViewHelper implements IViewHelper {
                 response.sendRedirect("/ToWatchList/content/content.jsp");
                 
             } else if (action.equals(Util.ACTION_LOGIN) ) {
+                IDAO categoryDao = new CategoryDAO();
+                IDAO classificationDao = new ClassificationDAO();
+                IDAO genreDao = new GenreDAO();
+                
+                Categoria category = new Categoria();
+                Classificacao classification = new Classificacao();
+                Genero genre = new Genero();
+                
+                List < EntidadeDominio > categories = new ArrayList < EntidadeDominio > ();
+                List < EntidadeDominio > genres = new ArrayList< EntidadeDominio >();
+                List < EntidadeDominio > classifications = new ArrayList< EntidadeDominio>();
+                
+                try {
+                categories = categoryDao.consultar(category);
+                genres = genreDao.consultar(genre);
+                classifications = classificationDao.consultar(classification);
+                } catch (SQLException se) {
+                    se.printStackTrace();
+                }
+                
                 result.setMsg(Util.USER_LOGIN_SUCCESSFULL);
                 request.getSession().setAttribute(Util.USER_LOGIN_LOG, result);
-                response.sendRedirect("/ToWatchList/content/content.jsp");
+                request.getSession().setAttribute("classifications", classifications);
+                request.getSession().setAttribute("genres", genres);
+                request.getSession().setAttribute("categories", categories);
+                request.getRequestDispatcher("/content/content.jsp").forward(request, response);
+                //response.sendRedirect("/ToWatchList/content/content.jsp");
             }
             else {
-                request.getRequestDispatcher("/login.jsp").forward(request, response);
+                request.setAttribute("msgResult", result.getMsg());
+                response.sendRedirect("/ToWatchList/user/login.jsp");
+                //request.getRequestDispatcher("user/login.jsp").forward(request, response);
             }
         }
         

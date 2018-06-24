@@ -6,10 +6,17 @@
 package com.fatec.towatchlist.fachada;
 
 import com.fatec.towatchlist.aplicacao.Resultado;
+import com.fatec.towatchlist.dao.CategoryDAO;
+import com.fatec.towatchlist.dao.ClassificationDAO;
+import com.fatec.towatchlist.dao.ContentDAO;
+import com.fatec.towatchlist.dao.GenreDAO;
 import com.fatec.towatchlist.dao.IDAO;
 import com.fatec.towatchlist.dao.UserDAO;
+import com.fatec.towatchlist.dominio.Categoria;
+import com.fatec.towatchlist.dominio.Classificacao;
 import com.fatec.towatchlist.dominio.Conteudo;
 import com.fatec.towatchlist.dominio.EntidadeDominio;
+import com.fatec.towatchlist.dominio.Genero;
 import com.fatec.towatchlist.dominio.Usuario;
 import com.fatec.towatchlist.strategy.IStrategy;
 import com.fatec.towatchlist.strategy.StgAutenticarUsuario;
@@ -53,6 +60,10 @@ public class Fachada implements IFachada {
         //
         // ------------------------- USUÁRIO ----------------------------- //
         UserDAO userDao = new UserDAO();
+        ContentDAO contentDao = new ContentDAO();
+        CategoryDAO categoryDao = new CategoryDAO();
+        GenreDAO genreDao = new GenreDAO();
+        ClassificationDAO classificationDao = new ClassificationDAO();
         
         // ------------------------- CONTEÚDO ----------------------------- //
         
@@ -61,6 +72,14 @@ public class Fachada implements IFachada {
         //
         // Populando Mapa com DAO do usuário
         daos.put(Usuario.class.getName(), userDao);
+        // Populando Mapa com DAO de conteúdo
+        daos.put(Conteudo.class.getName(), contentDao);
+        // Populando Mapa com DAO de categoria
+        daos.put(Categoria.class.getName(), categoryDao);
+        // Populando Mapa com DAO de gênero
+        daos.put(Genero.class.getName(), genreDao);
+        // Populando Mapa com DAO de classificacao
+        daos.put(Classificacao.class.getName(), classificationDao);
         
         // Istânciando Strategies para popular o mapa de strategies
         StgComplementarDtCadastro compDtCadastro = new StgComplementarDtCadastro();
@@ -88,6 +107,7 @@ public class Fachada implements IFachada {
         // ------------------------- CONTEÚDO ----------------------------- //
         // SALVAR
         List <IStrategy > rnsNegocioSalvarConteudo = new ArrayList<IStrategy>();
+        rnsNegocioSalvarConteudo.add(compDtCadastro);
         
         // Alterar
         List <IStrategy > rnsNegocioAlterarConteudo = new ArrayList<IStrategy>();
@@ -203,7 +223,9 @@ public class Fachada implements IFachada {
             IDAO dao = daos.get(className);
             try {
                 dao.consultar(entidade);
-                result.setEntidadesDominio(dao.consultar(entidade));
+                List < EntidadeDominio > entidades = new ArrayList < EntidadeDominio > ();
+                entidades.add(entidade);
+                result.setEntidadesDominio(entidades);
             } catch (SQLException ex) {
                 ex.printStackTrace();
                 result.setMsg(Util.ERROR_LIST);

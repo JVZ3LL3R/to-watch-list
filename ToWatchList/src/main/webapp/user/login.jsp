@@ -5,6 +5,7 @@
 --%>
 
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
 
@@ -19,6 +20,7 @@
         <div class="loginbox">
         <img src="/ToWatchList/img/avatar.png" class="avatar">
         <h1>Login</h1>
+        <label>${msgResult}</label>
         <form action="Login" method="post">
             <p>Email</p>
             <input type="text" name="emailUsr" placeholder="meu@email.com">

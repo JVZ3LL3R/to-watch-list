@@ -15,7 +15,7 @@
     <body>
         <form enctype="multipart/form-data">
             <div class="form-group">
-                <a href ="/ToWatchList/content/registerContent.jsp" style="text-decoration:none"><button type="button" class="btn btn-outline-success btn-block" name="operacao" id="operacao" value="SALVAR">Adicionar Conteúdo</button></a>
+                <a href="/ToWatchList/content/registerContent.jsp" style="text-decoration: none"><button type="button" class="btn btn-outline-success btn-block" name="operacao" id="operacao" value="CONSULTAR">Adicionar Conteúdo</button></a>
             </div>
         </form> <!-- Form-action -->
     </body>

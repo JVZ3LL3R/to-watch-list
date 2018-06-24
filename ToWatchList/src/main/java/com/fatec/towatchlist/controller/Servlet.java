@@ -58,7 +58,7 @@ public class Servlet extends HttpServlet {
         viewHelpers = new HashMap<String, IViewHelper>();
         viewHelpers.put(basePath.concat("user/SaveUser"), new UserViewHelper());
         viewHelpers.put(basePath.concat("user/Login"), new UserViewHelper());
-        viewHelpers.put(basePath.concat("user/SaveContent"), new ContentViewHelper());
+        viewHelpers.put(basePath.concat("content/SaveContent"), new ContentViewHelper());
         
     }
 

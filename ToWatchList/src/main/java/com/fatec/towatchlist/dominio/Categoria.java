@@ -15,8 +15,12 @@ public class Categoria extends EntidadeDominio {
     
     private String nome;
     private String descricao;
-    private List<Conteudo> conteudo;
+    private List<Conteudo> conteudos;
 
+    public Categoria (){
+        
+    }
+    
     public Categoria(String nome, String descricao) {
         this.nome = nome;
         this.descricao = descricao;
@@ -38,11 +42,11 @@ public class Categoria extends EntidadeDominio {
         this.descricao = descricao;
     }
 
-    public List<Conteudo> getConteudo() {
-        return conteudo;
+    public List<Conteudo> getConteudos() {
+        return conteudos;
     }
 
-    public void setConteudo(List<Conteudo> conteudo) {
-        this.conteudo = conteudo;
+    public void setConteudos(List<Conteudo> conteudos) {
+        this.conteudos = conteudos;
     } 
 }

@@ -4,7 +4,14 @@
     Author     : josev
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@page language="java" contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page 
+    import="com.fatec.towatchlist.aplicacao.Resultado, com.fatec.towatchlist.dominio.*, java.util.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
 <%@include file= "/includes/Bootstrap.jsp"%>
 <%@include file= "/includes/userHeader.jsp"%>
 <!DOCTYPE html>
@@ -68,12 +75,9 @@
                                     <span class="input-group-text" id="rating-addon"><i class="fas fa-smile fa-2x"></i></span>
                                 </div>
                                  <select class="custom-select form-control" id="txtClassificacaoInd" name="txtClassificacaoInd" style="width: 46px">
-                                    <option selected>Livre para todos os Públicos</option>
-                                    <option value="1">Não recomendado para menores de 10 anos</option>
-                                    <option value="2">Não recomendado para menores de 12 anos</option>
-                                    <option value="3">Não recomendado para menores de 14 anos</option>
-                                    <option value="4">Não recomendado para menores de 16 anos</option>
-                                    <option value="5">Não recomendado para menores de 18 anos</option>
+                                    <c:forEach items="${classifications}" var="classification">
+                                        <option value="${classification.id}">${classification.faixaEtaria}</option>
+                                    </c:forEach>
                                 </select>
                             </div>  
                         </div> <!-- form-group -->
@@ -92,12 +96,10 @@
                                  <div class="input-group-prepend">
                                     <span class="input-group-text" id="genre-addon"><i class="fab fa-napster fa-2x"></i></span>
                                 </div>
-                                <select class="custom-select" id="txtGenero" name="txtGenero" style="width: 46px">
-                                    <option selected>Ação</option>
-                                    <option value="1">Aventura</option>
-                                    <option value="2">Comédia</option>
-                                    <option value="3">Drama</option>
-                                    <option value="4">Terror</option>
+                                <select class="custom-select" id="txtGenero" name="txtGenero" style="width: 48px !important">
+                                    <c:forEach items="${genres}" var="genre">
+                                        <option value="${genre.id}">${genre.nomeGenero}</option>
+                                    </c:forEach>
                                 </select>
                             </div>  
                         </div> <!-- form-group -->
@@ -127,10 +129,10 @@
                                  <div class="input-group-prepend">
                                     <span class="input-group-text" id="list-addon"><i class="far fa-list-alt fa-2x"></i></span>
                                 </div>
-                                <select class="custom-select" id="txtCategoria" name="txtCategoria" style="width: 46px">
-                                    <option selected>Animes</option>
-                                    <option value="1">Filmes</option>
-                                    <option value="2">Séries</option>
+                                <select class="custom-select" id="txtCategoria" name="txtCategoria" style="width: 48px">
+                                    <c:forEach items="${categories}" var="category">
+                                        <option value="${category.id}">${category.nome}</option>
+                                    </c:forEach>
                                 </select>
                             </div>  
                         </div> <!-- form-group -->
@@ -155,7 +157,7 @@
                                  <span class="fas fa-star fa-2x" data-rating="3"></span>
                                  <span class="fas fa-star fa-2x" data-rating="4"></span>
                                  <span class="fas fa-star fa-2x" data-rating="5"></span>
-                                 <input type="hidden" id ="avaliacao" name="avalicao" class="rating-value" value="avaliacao">
+                                 <input type="hidden" id ="avaliacao" name="avalicao" class="rating-value" value="5">
                            </div>
                         </div>
                     </div> <!-- row 5 -->
