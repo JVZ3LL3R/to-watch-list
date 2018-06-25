@@ -14,6 +14,7 @@
 <%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
 <%@include file= "/includes/Bootstrap.jsp"%>
 <%@include file= "/includes/userHeader.jsp"%>
+
 <!DOCTYPE html>
 <html>
     <head>

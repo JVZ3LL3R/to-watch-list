@@ -45,8 +45,16 @@ public class UserViewHelper implements IViewHelper {
         Usuario usuario = new Usuario();
         usuario.setNome(name);
         usuario.setNomeUsuario(nickname);
-        usuario.setEmail(email);
-        usuario.setSenha(password);
+        if(null != email) {
+            usuario.setEmail(email);
+        } else {
+            usuario.setEmail("");
+        }
+        if (null!= password) {
+            usuario.setSenha(password); 
+        } else {
+            usuario.setSenha(""); 
+        }
         
         if (null != id && !id.trim().equals(""))
             usuario.setId(Integer.parseInt(id));
@@ -87,15 +95,16 @@ public class UserViewHelper implements IViewHelper {
                 List < EntidadeDominio > classifications = new ArrayList< EntidadeDominio>();
                 
                 try {
-                categories = categoryDao.consultar(category);
-                genres = genreDao.consultar(genre);
-                classifications = classificationDao.consultar(classification);
+                categories = categoryDao.listar(category);
+                genres = genreDao.listar(genre);
+                classifications = classificationDao.listar(classification);
                 } catch (SQLException se) {
                     se.printStackTrace();
                 }
                 
                 result.setMsg(Util.USER_LOGIN_SUCCESSFULL);
-                request.getSession().setAttribute(Util.USER_LOGIN_LOG, result);
+                Usuario user = (Usuario) result.getEntidadesDominio().get(0);
+                request.getSession().setAttribute(Util.USER_LOGIN_LOG, user);
                 request.getSession().setAttribute("classifications", classifications);
                 request.getSession().setAttribute("genres", genres);
                 request.getSession().setAttribute("categories", categories);

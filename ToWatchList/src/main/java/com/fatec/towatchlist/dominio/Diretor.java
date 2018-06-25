@@ -12,23 +12,11 @@ package com.fatec.towatchlist.dominio;
  */
 public class Diretor extends Pessoa {
 
-    private String paisOrigem;
-
-    public Diretor(String paisOrigem, String nome) {
+    public Diretor(String nome) {
         super(nome);
-        this.paisOrigem = paisOrigem;
     }
     
     public Diretor(){
         
     }
-
-    public String getPaisOrigem() {
-        return paisOrigem;
-    }
-
-    public void setPaisOrigem(String paisOrigem) {
-        this.paisOrigem = paisOrigem;
-    }
-
 }

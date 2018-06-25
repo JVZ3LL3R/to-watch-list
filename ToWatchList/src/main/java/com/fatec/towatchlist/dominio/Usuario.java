@@ -18,21 +18,13 @@ public class Usuario extends Pessoa {
     private String nomeUsuario;
     private String email;
     private String senha;
+    private String confirmaSenha;
     private boolean status;
-    private List <Categoria> categorias;
-    private Favoritos favoritos;
+    private List < Conteudo > contentsToWacth;
 
     public Usuario() {
         
-        categorias = new ArrayList< Categoria>();
-        
-        // Add the tree default categories to the each User of the system
-        categorias.add(new Categoria(Util.CATEGORY1, Util.CATEGORY_DESCRIPTION1));
-        categorias.add(new Categoria(Util.CATEGORY2, Util.CATEGORY_DESCRIPTION2));
-        categorias.add(new Categoria(Util.CATEGORY3, Util.CATEGORY_DESCRIPTION3));
     }
-
-
 
     public String getNomeUsuario() {
         return nomeUsuario;
@@ -58,6 +50,14 @@ public class Usuario extends Pessoa {
         this.senha = senha;
     }
 
+    public String getConfirmaSenha() {
+        return confirmaSenha;
+    }
+
+    public void setConfirmaSenha(String confirmaSenha) {
+        this.confirmaSenha = confirmaSenha;
+    }
+    
     public boolean isStatus() {
         return status;
     }
@@ -66,19 +66,11 @@ public class Usuario extends Pessoa {
         this.status = status;
     }
 
-    public List<Categoria> getCategorias() {
-        return categorias;
+    public List<Conteudo> getContentsToWacth() {
+        return contentsToWacth;
     }
 
-    public void setCategorias(List<Categoria> categorias) {
-        this.categorias = categorias;
-    }
-
-    public Favoritos getFavoritos() {
-        return favoritos;
-    }
-
-    public void setFavoritos(Favoritos favoritos) {
-        this.favoritos = favoritos;
+    public void setContentsToWacth(List<Conteudo> contentsToWacth) {
+        this.contentsToWacth = contentsToWacth;
     }
 }

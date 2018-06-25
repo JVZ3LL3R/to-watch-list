@@ -30,7 +30,7 @@ public class CategoryDAO extends AbstractJdbcDAO {
     }
 
     @Override
-    public List<EntidadeDominio> consultar(EntidadeDominio entidade) throws SQLException {
+    public List<EntidadeDominio> listar(EntidadeDominio entidade) throws SQLException {
         PreparedStatement statement = null;
         Categoria category = (Categoria) entidade;
         String sql = null;
@@ -73,6 +73,11 @@ public class CategoryDAO extends AbstractJdbcDAO {
 
     @Override
     public void alterar(EntidadeDominio entidade) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public EntidadeDominio consultar(EntidadeDominio entidade) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

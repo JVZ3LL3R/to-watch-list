@@ -5,6 +5,7 @@
  */
 package com.fatec.towatchlist.dao;
 
+import com.fatec.towatchlist.dominio.Conteudo;
 import com.fatec.towatchlist.dominio.EntidadeDominio;
 import com.fatec.towatchlist.dominio.Usuario;
 import com.towatchlist.fatec.util.Util;
@@ -77,7 +78,7 @@ public class UserDAO extends AbstractJdbcDAO {
     }
 
     @Override
-    public List<EntidadeDominio> consultar(EntidadeDominio entidade) throws SQLException {
+    public List<EntidadeDominio> listar(EntidadeDominio entidade) throws SQLException {
         PreparedStatement statement = null;
         Usuario usuario = (Usuario) entidade;
         String sql = null;
@@ -87,7 +88,7 @@ public class UserDAO extends AbstractJdbcDAO {
         
         if (null == usuario.getId() && usuario.getEmail().equals("")) {
             sql = "SELECT * FROM user";
-        } else if (null != usuario.getId() && !usuario.getEmail().equals("")) {
+        } else if (null != usuario.getId() && usuario.getEmail().equals("")) {
             sql = "SELECT * FROM user WHERE usr_id=?";
         } else if (null == usuario.getId() && !usuario.getEmail().equals("")) {
             sql = "SELECT * FROM user WHERE usr_email LIKE ?";
@@ -114,10 +115,30 @@ public class UserDAO extends AbstractJdbcDAO {
                 java.sql.Date dtCadLong = resultSet.getDate(Util.USER_SQL_DATE);
                 Date dtCad = new Date(dtCadLong.getTime());
                 usr.setData(dtCad);
-                
+                List < Conteudo > userContents = new ArrayList < Conteudo > ();
+                if(null == usuario.getContentsToWacth()) {
+                    sql = "SELECT usrl_cont_id FROM user_list WHERE usrl_usr_id=?";
+                    statement = connection.prepareStatement(sql);
+                    statement.setInt(1, usr.getId());
+                    resultSet = statement.executeQuery();
+                    IDAO contentDao = new ContentDAO();
+                    List < EntidadeDominio > contents = new ArrayList < EntidadeDominio > ();
+
+                    while(resultSet.next()){
+                        Conteudo contentList = new Conteudo();
+                        contentList.setId(resultSet.getInt("usrl_cont_id"));
+                        contentList.setUserID(usr.getId());
+                        contents.add( contentDao.consultar(contentList) ); 
+                    }
+                    
+                    for(EntidadeDominio ent: contents) {
+                        userContents.add ((Conteudo) ent);
+                    }
+                }
+                usr.setContentsToWacth(userContents);
                 usuarios.add(usr);
             }
-            
+           
             return usuarios;
         } catch (SQLException se) {
             se.printStackTrace();
@@ -163,6 +184,11 @@ public class UserDAO extends AbstractJdbcDAO {
                 throw new UnsupportedOperationException(Util.ERROR_EDIT);
             }
         }
+    }
+
+    @Override
+    public EntidadeDominio consultar(EntidadeDominio entidade) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
