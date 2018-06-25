@@ -27,7 +27,12 @@
                         <div class="col-lg-auto col-md-auto col-sm-auto"> <!-- Col -->
                             <div class="card-group mx-auto"> <!-- Card Group -->
                                 <c:forEach  var="logado" begin="${cont.getIndex()}" end="${cont.getIndex() + 3}" items="${logado.contentsToWacth}">
-                                    <div class="card mb-2 bg-dark text-white mr-4" style="width: 22rem;">
+                                    <c:if test="${logado.assistido}" >
+                                        <div class="card mb-2 bg-dark text-white mr-4" style="width: 22rem;">
+                                    </c:if>
+                                    <c:if test="${!logado.assistido}" >
+                                        <div class="card mb-2 bg-success text-dark mr-4" style="width: 22rem;">
+                                    </c:if>
                                         <img class="card-img-top" src="${logado.fichaTecnica.imgCapa.path}" alt="Card image cap">
                                         <div class="card-body">
                                             <h5 class="card-title">${logado.fichaTecnica.nome}</h5>
