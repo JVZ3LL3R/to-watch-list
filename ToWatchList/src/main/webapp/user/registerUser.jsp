@@ -45,21 +45,21 @@
             </div>
             <div class="form-group col-md-4">
                 <label for="senhaUsr">Senha</label>
-                <input type="text" class="form-control" id="senhaUsr"  name="senhaUsr" placeholder="Ex.: password123" aria-labelledby="senhaUsr">
+                <input type="password" class="form-control" id="senhaUsr"  name="senhaUsr" placeholder="Ex.: password123" aria-labelledby="senhaUsr">
             </div>
             <div class="form-group col-md-4">
                 <label for="senhaUsr2">Confirmar Senha</label>
-                <input type="text" class="form-control" id="senhaUsr2"  name="senhaUsr2" placeholder="Ex.: password123" aria-labelledby="senhaUsr2">
+                <input type="password" class="form-control" id="senhaUsr2"  name="senhaUsr2" placeholder="Ex.: password123" aria-labelledby="senhaUsr2">
             </div>
             <div class="button-group col-md-4">
                 <button type="submit" id="operacao" name="operacao" value="SALVAR" class="btn btn-light">Cadastrar</button>
                 <button type="submit" id ="operacao" name ="operacao" value="CANCELAR" class="btn btn-light">Cancelar</button>                
             </div>
         </form>
-        <c:if test="${result.msg != null}">
+        <c:if test="${msgResult != null}">
             <div class="alert alert-danger alert-dismissible" style="margin-top: 10px">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>${result.msg}</strong>
+                <strong>${msgResult}</strong>
             </div>
         </c:if>
         <!-- Scripts -->

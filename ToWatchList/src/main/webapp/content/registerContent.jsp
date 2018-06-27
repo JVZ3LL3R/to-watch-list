@@ -42,10 +42,10 @@
                     <h1 class="display-7">Cadastrar Conteúdo</h1>
                     <hr class="my-3"> 
                 </div> <!-- Page Header-->
-                <c:if test="${result.msg != null}">
+                <c:if test="${msgResult != null}">
                     <div class="alert alert-danger alert-dismissible" style="zIndex: 1000;">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        <strong>${result.msg}</strong> ${Util.ERROR_SAVE}
+                        <strong>${msgResult}</strong>
                     </div> 
                 </c:if>
                 <form action="SaveContent" method="post">
@@ -162,14 +162,12 @@
                     <div class="row">
                         <div class="form-group col-lg-auto">
                             <label for="avaliacao">Avaliação</label>
-                            <div class="star-rating"> 
-                                 <span class="fas fa-star fa-2x" data-rating="1"></span>
-                                 <span class="fas fa-star fa-2x" data-rating="2"></span>
-                                 <span class="fas fa-star fa-2x" data-rating="3"></span>
-                                 <span class="fas fa-star fa-2x" data-rating="4"></span>
-                                 <span class="fas fa-star fa-2x" data-rating="5"></span>
-                                 <input type="hidden" id ="avaliacao" name="avalicao" class="rating-value" value="5">
-                           </div>
+                            <div class="input-group-prepend mb-3">
+                                <div class="input-group-prepend text-center">
+                                    <span class="input-group-text" id="rating-addon"><i class="fas fas fa-star fa-2x"></i></span>
+                                </div>
+                                <input type="number" id ="avaliacao" name="avalicao" value="5" placeholder="5">
+                            </div>
                         </div>
                     </div> <!-- row 5 -->
                     <form method="POST" action="#" enctype="multipart/form-data">

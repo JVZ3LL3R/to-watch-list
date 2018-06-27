@@ -32,10 +32,10 @@
         </form>
     </div>
         <div class="fixed-bottom text-center">
-        <c:if test="${result.msg != null}">
+        <c:if test="${msgResult != null}">
             <div class="alert alert-warning alert-dismissible align-self-right">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>${result.msg}</strong> ${Util.USER_LOGIN_ERROR}
+                <strong>${msgResult}</strong> ${Util.USER_LOGIN_ERROR}
             </div> 
         </c:if>
         </div>

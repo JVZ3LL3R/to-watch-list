@@ -74,7 +74,7 @@ public class UserViewHelper implements IViewHelper {
     public void setView(Resultado result, HttpServletRequest request ,HttpServletResponse response) throws IOException, ServletException {
         String action = request.getParameter(Util.ACTION_PARAMETER);
         RequestDispatcher dispatcher = null;
-        request.getSession().removeAttribute("result");
+        request.getSession().removeAttribute("msgResult");
         if (null == result.getMsg()) {
             if (action.equals(Util.ACTION_SAVE)) {
                 request.getSession().setAttribute("result", result);
@@ -88,9 +88,10 @@ public class UserViewHelper implements IViewHelper {
             }
         } else {
                 request.getSession().setAttribute("result", result);
-                if(Util.ACTION_PARAMETER == "SALVAR"){
+                if(action == Util.ACTION_SAVE){
                     dispatcher = request.getRequestDispatcher("/user/registerUser.jsp"); 
                 } else {
+                    request.getSession().setAttribute("msgResult", result.getMsg());
                     dispatcher = request.getRequestDispatcher("/user/login.jsp"); 
                 }
             }

@@ -215,4 +215,44 @@ public class ContentDAO  extends AbstractJdbcDAO {
         return null;
     }
     
+    @Override
+    public void excluir (EntidadeDominio entidade) {
+        openConnection();
+            PreparedStatement statement = null;		
+            String sqlCont = "DELETE FROM content WHERE cont_id=?";
+            String sqlGenre = "DELETE FROM genre_content WHERE gcont_cont_id=?";
+            String sqlList = "DELETE FROM user_list WHERE usrl_cont_id=?";
+            
+            try {
+                connection.setAutoCommit(false);
+                statement = connection.prepareStatement(sqlList);
+                statement.setInt(1, entidade.getId());
+                statement.executeUpdate();
+                
+                statement = connection.prepareStatement(sqlGenre);
+                statement.setInt(1, entidade.getId());
+                statement.executeUpdate();
+                
+                statement = connection.prepareStatement(sqlCont);
+                statement.setInt(1, entidade.getId());
+                statement.executeUpdate();
+                
+                connection.commit();
+            } catch (SQLException e) {
+                try {
+                        connection.rollback();
+                } catch (SQLException e1) {
+                        e1.printStackTrace();
+                }
+                e.printStackTrace();			
+            }finally{
+                try {
+                    statement.close();
+                    if(controlTransaction)
+                        connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }		
+    }
 }

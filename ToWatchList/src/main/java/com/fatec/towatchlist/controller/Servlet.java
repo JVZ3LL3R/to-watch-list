@@ -35,7 +35,9 @@ import javax.servlet.http.HttpServletResponse;
         name = "Servlet",
         urlPatterns = {"/SaveUser",
                        "/Login",
-                       "/SaveContent"}
+                       "/SaveContent",
+                       "/LoadContent",
+                       "/DeleteContent"}
         )
     
 
@@ -59,6 +61,8 @@ public class Servlet extends HttpServlet {
         viewHelpers.put(basePath.concat("user/SaveUser"), new UserViewHelper());
         viewHelpers.put(basePath.concat("user/Login"), new UserViewHelper());
         viewHelpers.put(basePath.concat("content/SaveContent"), new ContentViewHelper());
+        viewHelpers.put(basePath.concat("user/DeleteContent"),new ContentViewHelper());
+        viewHelpers.put(basePath.concat("content/DeleteContent"),new ContentViewHelper());
         
     }
 
