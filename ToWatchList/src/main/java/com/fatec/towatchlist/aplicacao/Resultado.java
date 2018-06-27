@@ -7,6 +7,7 @@ package com.fatec.towatchlist.aplicacao;
 
 import com.fatec.towatchlist.dominio.EntidadeDominio;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -16,6 +17,7 @@ public class Resultado extends EntidadeAplicacao {
     
     private String msg;
     private List < EntidadeDominio > entidadesDominio;
+    private Map < String, List < EntidadeDominio > > mapEntidades;
 
     public String getMsg() {
         return msg;
@@ -32,5 +34,14 @@ public class Resultado extends EntidadeAplicacao {
     public void setEntidadesDominio(List<EntidadeDominio> entidadesDominio) {
         this.entidadesDominio = entidadesDominio;
     }
+    
+        public Map<String, List<EntidadeDominio>> getMapEntidades() {
+        return mapEntidades;
+    }
+
+    public void setMapEntidades(Map<String, List<EntidadeDominio>> mapEntidades) {
+        this.mapEntidades = mapEntidades;
+    }
+
     
 }

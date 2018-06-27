@@ -7,6 +7,7 @@ package com.fatec.towatchlist.fachada;
 
 import com.fatec.towatchlist.aplicacao.Resultado;
 import com.fatec.towatchlist.dominio.EntidadeDominio;
+import java.util.List;
 
 /**
  *

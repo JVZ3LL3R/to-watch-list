@@ -17,9 +17,11 @@ public class Util {
     public static final String ACTION_LOGIN = "LOGIN";
     public static final String ACTION_PARAMETER = "operacao";
     public static final String ACTION_SAVE = "SALVAR";
-    public static final String CATEGORY1 = "Filmes";
-    public static final String CATEGORY2 = "Séries";
-    public static final String CATEGORY3 = "Animes";
+    public static final String CATEGORY_CLASS = "com.fatec.towatchlist.dominio.Categoria";
+    public static final String CLASSIFICATION_CLASS = "com.fatec.towatchlist.dominio.Classificacao";
+    public static final String CONTENT_CLASS = "com.fatec.towatchlist.dominio.Conteudo";
+    public static final String GENRE_CLASS = "com.fatec.towatchlist.dominio.Genero";
+    public static final String USER_CLASS = "com.fatec.towatchlist.dominio.Usuario";
     public static final Boolean CONTENT_WATCHED = true;
     public static final Boolean CONTENT_NOT_WATCHED = false;
     public static final String CATEGORY_DESCRIPTION1 = "Filmes em Geral";
@@ -42,7 +44,7 @@ public class Util {
     public static final String SUCCESSFULL_USER_DELETE = "Usuário Excluido com Sucesso!";
     public static final String USER_NAME_ERROR = "Nome Inválido ou Nulo";
     public static final String USER_EMAIL_ERROR = "Email Inválido ou Nulo";
-    public static final String USER_LOGIN_ERROR = "Login Inválido";
+    public static final String USER_LOGIN_ERROR = "Email ou Senha Inválido!!!";
     public static final String USER_LOGIN_SUCCESSFULL = "Login realizado com Sucesso!";
     public static final String USER_LOGIN_LOG = "logado";
     public static final String USER_NICKNAME_ERROR = "Apelido Inválido ou Nulo";

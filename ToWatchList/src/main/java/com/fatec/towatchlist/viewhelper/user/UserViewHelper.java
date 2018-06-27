@@ -73,52 +73,28 @@ public class UserViewHelper implements IViewHelper {
     @Override
     public void setView(Resultado result, HttpServletRequest request ,HttpServletResponse response) throws IOException, ServletException {
         String action = request.getParameter(Util.ACTION_PARAMETER);
-        //RequestDispatcher dispatcher = null;
-        
+        RequestDispatcher dispatcher = null;
+        request.getSession().removeAttribute("result");
         if (null == result.getMsg()) {
             if (action.equals(Util.ACTION_SAVE)) {
-                result.setMsg(Util.SUCCESSFULL_USER_SAVE);
-                request.getSession().setAttribute("resultado", result);
-                response.sendRedirect("/ToWatchList/content/content.jsp");
+                request.getSession().setAttribute("result", result);
+                dispatcher = request.getRequestDispatcher("/content/content.jsp");
+                //response.sendRedirect("/ToWatchList/content/content.jsp");
                 
             } else if (action.equals(Util.ACTION_LOGIN) ) {
-                IDAO categoryDao = new CategoryDAO();
-                IDAO classificationDao = new ClassificationDAO();
-                IDAO genreDao = new GenreDAO();
-                
-                Categoria category = new Categoria();
-                Classificacao classification = new Classificacao();
-                Genero genre = new Genero();
-                
-                List < EntidadeDominio > categories = new ArrayList < EntidadeDominio > ();
-                List < EntidadeDominio > genres = new ArrayList< EntidadeDominio >();
-                List < EntidadeDominio > classifications = new ArrayList< EntidadeDominio>();
-                
-                try {
-                categories = categoryDao.listar(category);
-                genres = genreDao.listar(genre);
-                classifications = classificationDao.listar(classification);
-                } catch (SQLException se) {
-                    se.printStackTrace();
-                }
-                
-                result.setMsg(Util.USER_LOGIN_SUCCESSFULL);
-                Usuario user = (Usuario) result.getEntidadesDominio().get(0);
-                request.getSession().setAttribute(Util.USER_LOGIN_LOG, user);
-                request.getSession().setAttribute("classifications", classifications);
-                request.getSession().setAttribute("genres", genres);
-                request.getSession().setAttribute("categories", categories);
-                request.getRequestDispatcher("/content/content.jsp").forward(request, response);
+                request.getSession().setAttribute("result", result);
+                dispatcher = request.getRequestDispatcher("/content/content.jsp");
                 //response.sendRedirect("/ToWatchList/content/content.jsp");
             }
-            else {
-                request.setAttribute("msgResult", result.getMsg());
-                response.sendRedirect("/ToWatchList/user/login.jsp");
-                //request.getRequestDispatcher("user/login.jsp").forward(request, response);
+        } else {
+                request.getSession().setAttribute("result", result);
+                if(Util.ACTION_PARAMETER == "SALVAR"){
+                    dispatcher = request.getRequestDispatcher("/user/registerUser.jsp"); 
+                } else {
+                    dispatcher = request.getRequestDispatcher("/user/login.jsp"); 
+                }
             }
-        }
         
+        dispatcher.forward(request, response);
     }
-    
-    
 }

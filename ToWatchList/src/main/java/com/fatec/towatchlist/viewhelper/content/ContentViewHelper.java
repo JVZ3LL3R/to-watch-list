@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,7 +48,8 @@ public class ContentViewHelper implements IViewHelper {
         String overview = request.getParameter("txtSinopse");
         String contentRating = request.getParameter("avalicao");
         
-        Usuario user = (Usuario) request.getSession().getAttribute(Util.USER_LOGIN_LOG);
+        Resultado r = (Resultado) request.getSession().getAttribute("result");
+        Usuario user = (Usuario) r.getMapEntidades().get(Util.USER_CLASS).get(0);
         
         FichaTecnica fichaTecnica = new FichaTecnica();
         Avaliacao rating = new Avaliacao();
@@ -99,23 +101,28 @@ public class ContentViewHelper implements IViewHelper {
     @Override
     public void setView(Resultado result, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String action = request.getParameter(Util.ACTION_PARAMETER);
+        RequestDispatcher dispatcher = null;
         
         if (null == result.getMsg()) {
             if (action.equals(Util.ACTION_SAVE)) {
                 result.setMsg(Util.SUCCESSFULL_CONTENT_SAVE);
-                request.getSession().setAttribute("resultado", result);
-                Usuario user = (Usuario) request.getSession().getAttribute(Util.USER_LOGIN_LOG);
-                for (EntidadeDominio ent : result.getEntidadesDominio()){
-                    user.getContentsToWacth().add((Conteudo) ent);
+                //request.getSession().setAttribute("result", result);
+                Resultado r = (Resultado) request.getSession().getAttribute("result");
+                Usuario user = (Usuario ) r.getMapEntidades().get(Util.USER_CLASS).get(0);
+                for (EntidadeDominio ent : result.getMapEntidades().get(Util.CONTENT_CLASS)){
+                    user.getContentsToWacth().add( (Conteudo) ent );
                 }
-                request.getSession().setAttribute(Util.USER_LOGIN_LOG, user);
-                response.sendRedirect("/ToWatchList/content/content.jsp");
+                r.getMapEntidades().get(Util.USER_CLASS).set(0, user);
+                request.getSession().setAttribute("result", r);
+                dispatcher = request.getRequestDispatcher("/content/content.jsp");
+                //response.sendRedirect("/ToWatchList/content/content.jsp");
                 
             } else {
-                request.getRequestDispatcher("/login.jsp").forward(request, response);
+                dispatcher = request.getRequestDispatcher("/content/content.jsp");
             }
         }
         
+        dispatcher.forward(request, response);
     }
     
     

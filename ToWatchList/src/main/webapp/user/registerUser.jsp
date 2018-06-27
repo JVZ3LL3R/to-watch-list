@@ -56,5 +56,13 @@
                 <button type="submit" id ="operacao" name ="operacao" value="CANCELAR" class="btn btn-light">Cancelar</button>                
             </div>
         </form>
+        <c:if test="${result.msg != null}">
+            <div class="alert alert-danger alert-dismissible" style="margin-top: 10px">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>${result.msg}</strong>
+            </div>
+        </c:if>
+        <!-- Scripts -->
+        <%@include file= "/includes/userFooter.jsp"%>
     </body>
 </html>

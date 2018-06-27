@@ -37,7 +37,7 @@ public class ContentDAO  extends AbstractJdbcDAO {
     }
 
     @Override
-    public void salvar(EntidadeDominio entidade) throws SQLException {
+    public void salvar(EntidadeDominio entidade){
         openConnection();
         PreparedStatement statement = null;
         Conteudo content = (Conteudo) entidade;
@@ -96,33 +96,30 @@ public class ContentDAO  extends AbstractJdbcDAO {
                 connection.rollback();
             } catch (SQLException esql) {
                 esql.printStackTrace();
-                throw new UnsupportedOperationException(Util.ERROR_SAVE);
             }
             e.printStackTrace();
-            throw new UnsupportedOperationException(Util.ERROR_SAVE);
         } finally {
             try {
                 statement.close();
                 connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
-                throw new UnsupportedOperationException(Util.ERROR_SAVE);
             }
         }
     }
 
     @Override
-    public List<EntidadeDominio> listar(EntidadeDominio entidade) throws SQLException {
+    public List<EntidadeDominio> listar(EntidadeDominio entidade){
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void alterar(EntidadeDominio entidade) throws SQLException {
+    public void alterar(EntidadeDominio entidade){
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public EntidadeDominio consultar(EntidadeDominio entidade) throws SQLException {
+    public EntidadeDominio consultar(EntidadeDominio entidade){
         PreparedStatement statement = null;
         openConnection();
         Conteudo content = ( Conteudo ) entidade;
@@ -130,7 +127,11 @@ public class ContentDAO  extends AbstractJdbcDAO {
         
         if (null != content.getId()) {
             sql  = "SELECT * FROM content WHERE cont_id=?";
-        } // TODO: 
+        } else if (null != content.getFichaTecnica().getNome()){
+            sql = "SELECT * FROM content WHERE cont_name=?";
+        } 
+        
+           // TODO:
           // implemt other methods to list the contents ....
           
         try {
@@ -139,6 +140,8 @@ public class ContentDAO  extends AbstractJdbcDAO {
             
             if(null != content.getId()) {
                 statement.setInt(1, content.getId());
+            } else if (null != content.getFichaTecnica().getNome()) {
+                statement.setString(1, content.getFichaTecnica().getNome());
             }
             
             ResultSet resultSet = statement.executeQuery();
@@ -208,9 +211,8 @@ public class ContentDAO  extends AbstractJdbcDAO {
             return cont;
         } catch (SQLException se) {
             se.printStackTrace();
-            throw new UnsupportedOperationException(Util.ERROR_LIST);
         }
-        
+        return null;
     }
     
 }

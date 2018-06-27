@@ -67,8 +67,8 @@ public class CategoryDAO extends AbstractJdbcDAO {
             return categories;
         } catch (SQLException se) {
             se.printStackTrace();
-            throw new UnsupportedOperationException(Util.ERROR_LIST);
         }
+        return null;
     }
 
     @Override

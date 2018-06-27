@@ -65,8 +65,8 @@ public class ClassificationDAO extends AbstractJdbcDAO {
             return classifications;
         } catch (SQLException se) {
             se.printStackTrace();
-            throw new UnsupportedOperationException(Util.ERROR_LIST);
         }
+        return null;
     }
 
     @Override

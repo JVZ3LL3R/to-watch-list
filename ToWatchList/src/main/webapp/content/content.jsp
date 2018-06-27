@@ -22,28 +22,32 @@
     </head>
     <body>
         <div class="container-fluid">
-            <c:forEach items="${logado.contentsToWacth}" var="content" varStatus="cont" step="4">
-                    <div class="row"> <!-- Row -->
-                        <div class="col-lg-auto col-md-auto col-sm-auto"> <!-- Col -->
-                            <div class="card-group mx-auto"> <!-- Card Group -->
-                                <c:forEach  var="logado" begin="${cont.getIndex()}" end="${cont.getIndex() + 3}" items="${logado.contentsToWacth}">
-                                    <c:if test="${logado.assistido}" >
-                                        <div class="card mb-2 bg-dark text-white mr-4" style="width: 22rem;">
-                                    </c:if>
-                                    <c:if test="${!logado.assistido}" >
-                                        <div class="card mb-2 bg-success text-dark mr-4" style="width: 22rem;">
-                                    </c:if>
-                                        <img class="card-img-top" src="${logado.fichaTecnica.imgCapa.path}" alt="Card image cap">
-                                        <div class="card-body">
-                                            <h5 class="card-title">${logado.fichaTecnica.nome}</h5>
-                                            <p class="card-text">${logado.fichaTecnica.sinopse}</p>
-                                            <p class="card-text"><small class="text-white">${logado.data}</small></p>
-                                        </div>
-                                    </div>
-                                </c:forEach>
-                            </div> <!-- Card Group -->
-                        </div> <!-- Col -->
-                    </div> <!-- Row -->
+            <c:if test="${result.msg != null}">
+                <div class="alert alert-danger alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>${result.msg}</strong>
+                </div>
+            </c:if>
+            <c:forEach var="content" items="${result.mapEntidades[Util.USER_CLASS]}">
+            <c:forEach items="${content.contentsToWacth}" var="c" varStatus="cont" step="4">                
+                <div class="card-deck" style="margin-bottom: 10px;"> <!-- Card Group -->
+                    <c:forEach  var="j" begin="${cont.index}" end="${cont.getIndex() + 4}" items="${content.contentsToWacth}" varStatus="i">
+                        <c:if test="${j.assistido}" >
+                            <div class="card bg-info text-white" style="width: 18rem;">
+                        </c:if>
+                        <c:if test="${j.assistido != true}" >
+                            <div class="card bg-dark text-white" style="width: 18rem;">
+                        </c:if>
+                            <img class="card-img-top" src="${j.fichaTecnica.imgCapa.path}" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">${j.fichaTecnica.nome}</h5>
+                                <p class="card-text">${j.fichaTecnica.sinopse}</p>
+                                <p class="card-text"><small class="text-white">${j.data}</small></p>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div> <!-- Card Group -->
+                </c:forEach>
                 </c:forEach>
         <form enctype="multipart/form-data">
             <div class="form-group">
@@ -51,5 +55,7 @@
             </div>
         </form> <!-- Form-action -->
         </div> <!-- container-fluid-->
+        <!-- Scripts -->
+        <%@include file= "/includes/userFooter.jsp"%>
     </body>
 </html>

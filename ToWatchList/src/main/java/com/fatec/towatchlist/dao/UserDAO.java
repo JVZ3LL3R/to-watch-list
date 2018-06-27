@@ -62,17 +62,14 @@ public class UserDAO extends AbstractJdbcDAO {
                 connection.rollback();
             } catch (SQLException esql) {
                 esql.printStackTrace();
-                throw new UnsupportedOperationException(Util.ERROR_SAVE);
             }
             e.printStackTrace();
-            throw new UnsupportedOperationException(Util.ERROR_SAVE);
         } finally {
             try {
                 statement.close();
                 connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
-                throw new UnsupportedOperationException(Util.ERROR_SAVE);
             }
         }
     }
@@ -142,9 +139,8 @@ public class UserDAO extends AbstractJdbcDAO {
             return usuarios;
         } catch (SQLException se) {
             se.printStackTrace();
-            throw new UnsupportedOperationException(Util.ERROR_LIST);
         }
-        
+        return null;
     }
 
     @Override
@@ -172,7 +168,6 @@ public class UserDAO extends AbstractJdbcDAO {
                 connection.rollback();
             } catch (SQLException sql) {
                 sql.printStackTrace();
-                throw new UnsupportedOperationException(Util.ERROR_EDIT);
             }
             se.printStackTrace();
         } finally {
@@ -181,7 +176,6 @@ public class UserDAO extends AbstractJdbcDAO {
                 connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
-                throw new UnsupportedOperationException(Util.ERROR_EDIT);
             }
         }
     }

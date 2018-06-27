@@ -22,6 +22,8 @@ import com.fatec.towatchlist.strategy.IStrategy;
 import com.fatec.towatchlist.strategy.StgAutenticarUsuario;
 import com.fatec.towatchlist.strategy.StgComplementarDtCadastro;
 import com.fatec.towatchlist.strategy.StgValidarCadastroUsuario;
+import com.fatec.towatchlist.strategy.StgValidarDadosObrigatorios;
+import com.fatec.towatchlist.strategy.StgValidarExistenciaConteudo;
 import com.towatchlist.fatec.util.Util;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -60,13 +62,12 @@ public class Fachada implements IFachada {
         //
         // ------------------------- USUÁRIO ----------------------------- //
         UserDAO userDao = new UserDAO();
+        
+        // ------------------------- CONTEÚDO ----------------------------- //
         ContentDAO contentDao = new ContentDAO();
         CategoryDAO categoryDao = new CategoryDAO();
         GenreDAO genreDao = new GenreDAO();
         ClassificationDAO classificationDao = new ClassificationDAO();
-        
-        // ------------------------- CONTEÚDO ----------------------------- //
-        
         
         // Populando mapa de DAOs para cada Entidade
         //
@@ -85,6 +86,10 @@ public class Fachada implements IFachada {
         StgComplementarDtCadastro compDtCadastro = new StgComplementarDtCadastro();
         StgValidarCadastroUsuario vrUserRegister = new StgValidarCadastroUsuario();
         StgAutenticarUsuario vrAuthentication = new StgAutenticarUsuario();
+        
+        // ------------------------ USUÁRIO ----------------------------- //
+        StgValidarDadosObrigatorios vrDadosObrigatorios = new StgValidarDadosObrigatorios();
+        StgValidarExistenciaConteudo vrExistenciaConteudo = new StgValidarExistenciaConteudo();
         
         // Criando listas de Strategies para adicionar ao mapa de Strategies de acordo com a ação requerida
         //
@@ -108,6 +113,8 @@ public class Fachada implements IFachada {
         // SALVAR
         List <IStrategy > rnsNegocioSalvarConteudo = new ArrayList<IStrategy>();
         rnsNegocioSalvarConteudo.add(compDtCadastro);
+        rnsNegocioSalvarConteudo.add(vrDadosObrigatorios);
+        rnsNegocioSalvarConteudo.add(vrExistenciaConteudo);
         
         // Alterar
         List <IStrategy > rnsNegocioAlterarConteudo = new ArrayList<IStrategy>();
@@ -154,9 +161,11 @@ public class Fachada implements IFachada {
             IDAO dao = daos.get(className);
             try {
                 dao.salvar(entidade);
-                List< EntidadeDominio > entidades = new ArrayList< EntidadeDominio > ();
+                Map < String, List < EntidadeDominio > > mapEntidades = new HashMap < String, List < EntidadeDominio > > ();
+                List < EntidadeDominio > entidades = new ArrayList < EntidadeDominio > ();
                 entidades.add(entidade);
-                result.setEntidadesDominio(entidades);
+                mapEntidades.put(entidade.getClass().getCanonicalName(), entidades);
+                result.setMapEntidades(mapEntidades);
             } catch (SQLException ex) {
                 ex.printStackTrace();
                 result.setMsg(Util.ERROR_SAVE);
@@ -177,9 +186,11 @@ public class Fachada implements IFachada {
             IDAO dao = daos.get(className);
             try {
                 dao.excluir(entidade);
-                List< EntidadeDominio > entidades = new ArrayList< EntidadeDominio > ();
+                Map < String, List < EntidadeDominio > > mapEntidades = new HashMap < String, List < EntidadeDominio > > ();
+                List < EntidadeDominio > entidades = new ArrayList < EntidadeDominio > ();
                 entidades.add(entidade);
-                result.setEntidadesDominio(entidades);
+                mapEntidades.put(entidade.getClass().getCanonicalName(), entidades);
+                result.setMapEntidades(mapEntidades);
             } catch (SQLException ex) {
                 ex.printStackTrace();
                 result.setMsg(Util.ERROR_DELETE);
@@ -201,8 +212,10 @@ public class Fachada implements IFachada {
             try {
                 dao.alterar(entidade);
                 List< EntidadeDominio > entidades = new ArrayList< EntidadeDominio > ();
+                Map < String, List < EntidadeDominio > > mapEntidades = new HashMap < String, List < EntidadeDominio > > ();
                 entidades.add(entidade);
-                result.setEntidadesDominio(entidades);
+                mapEntidades.put(entidade.getClass().getCanonicalName(), entidades);
+                result.setMapEntidades(mapEntidades);
             } catch (SQLException ex) {
                 ex.printStackTrace();
                 result.setMsg(Util.ERROR_EDIT);
@@ -216,6 +229,11 @@ public class Fachada implements IFachada {
     @Override
     public Resultado consult(EntidadeDominio entidade) {
         Resultado result = new Resultado();
+        Map < String, List < EntidadeDominio > > mapEntidades = new HashMap < String, List < EntidadeDominio > > ();
+        if(entidade instanceof Usuario) {
+            result = list();
+            mapEntidades = result.getMapEntidades();
+        }
         String className = entidade.getClass().getName();
         String msgResult = executarRegras(entidade, Util.ACTION_CONSULT);
         
@@ -224,7 +242,8 @@ public class Fachada implements IFachada {
             try {
                 List < EntidadeDominio > entidades = new ArrayList < EntidadeDominio > ();
                 entidades = dao.listar(entidade);
-                result.setEntidadesDominio(entidades);
+                mapEntidades.put(entidade.getClass().getCanonicalName(), entidades);
+                result.setMapEntidades(mapEntidades);
             } catch (SQLException ex) {
                 ex.printStackTrace();
                 result.setMsg(Util.ERROR_LIST);
@@ -232,6 +251,41 @@ public class Fachada implements IFachada {
         } else
             result.setMsg(msgResult);
         
+        return result;
+    }
+    
+    private Resultado list () {
+        Resultado result = new Resultado();
+        Categoria category = new Categoria();
+        Classificacao classification = new Classificacao();
+        Genero genre = new Genero();
+        List < EntidadeDominio > entidades = new ArrayList < EntidadeDominio > ();
+        entidades.add(category);
+        entidades.add(classification);
+        entidades.add(genre);
+
+        Map < String, List < EntidadeDominio > > mapEntidades = new HashMap < String, List < EntidadeDominio > > ();
+        for(EntidadeDominio entidade : entidades ) {
+            String className = entidade.getClass().getName();
+            String msgResult = executarRegras(entidade, Util.ACTION_CONSULT);
+            
+            if(null == msgResult) {
+                IDAO dao = daos.get(className);
+                try {
+                    List < EntidadeDominio > entidadesList = new ArrayList < EntidadeDominio > ();
+                    entidadesList = dao.listar(entidade);
+                    mapEntidades.put(entidade.getClass().getCanonicalName(), entidadesList);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                    result.setMsg(Util.ERROR_LIST);
+                    return result;
+                }
+            } else { 
+                result.setMsg(msgResult);
+            }
+        }
+        
+        result.setMapEntidades(mapEntidades);
         return result;
     }
     
@@ -259,5 +313,4 @@ public class Fachada implements IFachada {
         else
             return null;
     }
-    
 }

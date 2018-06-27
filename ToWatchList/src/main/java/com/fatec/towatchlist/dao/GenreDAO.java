@@ -27,7 +27,7 @@ public class GenreDAO extends AbstractJdbcDAO {
     }
 
     @Override
-    public void salvar(EntidadeDominio entidade) throws SQLException {
+    public void salvar(EntidadeDominio entidade){
         openConnection();
         PreparedStatement statement = null;
         Conteudo content = (Conteudo) entidade;
@@ -69,23 +69,20 @@ public class GenreDAO extends AbstractJdbcDAO {
                 connection.rollback();
             } catch (SQLException esql) {
                 esql.printStackTrace();
-                throw new UnsupportedOperationException(Util.ERROR_SAVE);
             }
             e.printStackTrace();
-            throw new UnsupportedOperationException(Util.ERROR_SAVE);
         } finally {
             try {
                 statement.close();
                 connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
-                throw new UnsupportedOperationException(Util.ERROR_SAVE);
             }
         }
     }
 
     @Override
-    public List<EntidadeDominio> listar(EntidadeDominio entidade) throws SQLException {
+    public List<EntidadeDominio> listar(EntidadeDominio entidade){
         PreparedStatement statement = null;
         Genero genre = (Genero) entidade;
         String sql = null;
@@ -121,8 +118,8 @@ public class GenreDAO extends AbstractJdbcDAO {
             return genres;
         } catch (SQLException se) {
             se.printStackTrace();
-            throw new UnsupportedOperationException(Util.ERROR_LIST);
         }
+        return null;
     }
 
     @Override
