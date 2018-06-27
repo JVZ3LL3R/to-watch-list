@@ -31,19 +31,27 @@
             <c:forEach var="content" items="${result.mapEntidades[Util.USER_CLASS]}">
             <c:forEach items="${content.contentsToWacth}" var="c" varStatus="cont" step="4">                
                 <div class="card-deck" style="margin-bottom: 10px;"> <!-- Card Group -->
-                    <c:forEach  var="j" begin="${cont.index}" end="${cont.getIndex() + 4}" items="${content.contentsToWacth}" varStatus="i">
+                    <c:forEach  var="j" begin="${cont.index}" end="${cont.getIndex() + 3}" items="${content.contentsToWacth}" varStatus="i">
                         <c:if test="${j.assistido}" >
                             <div class="card bg-info text-white" style="width: 18rem;">
+                                <div class="card-header ml-auto">
+                                    <a href="DeleteContent?contId=${j.id}&operacao=EXCLUIR"><i class="fas fa-trash"></i></a>
+                                </div>
                         </c:if>
                         <c:if test="${j.assistido != true}" >
                             <div class="card bg-dark text-white" style="width: 18rem;">
+                                <div class="card-header ml-auto">
+                                    <a href="DeleteContent?contId=${j.id}&operacao=EXCLUIR"><i class="fas fa-trash"></i></a>
+                                </div>
                         </c:if>
                             <img class="card-img-top" src="${j.fichaTecnica.imgCapa.path}" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title">${j.fichaTecnica.nome}</h5>
                                 <p class="card-text">${j.fichaTecnica.sinopse}</p>
-                                <p class="card-text"><small class="text-white">${j.data}</small></p>
                             </div>
+                            <div class="card-footer text-muted">
+                                ${j.data}
+                          </div>
                         </div>
                     </c:forEach>
                 </div> <!-- Card Group -->
