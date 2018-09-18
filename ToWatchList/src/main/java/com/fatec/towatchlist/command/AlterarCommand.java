@@ -5,17 +5,19 @@
  */
 package com.fatec.towatchlist.command;
 
+import com.fatec.towatchlist.aplicacao.Resultado;
 import com.fatec.towatchlist.dominio.EntidadeDominio;
+import javax.swing.text.AbstractDocument;
 
 /**
  *
  * @author josev
  */
-public class AlterarCommand implements ICommand {
+public class AlterarCommand extends AbstractCommand {
 
     @Override
-    public String executar(EntidadeDominio entidadeDominio) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Resultado execute(EntidadeDominio entidade) {
+        return facade.edit(entidade);
     }
     
 }

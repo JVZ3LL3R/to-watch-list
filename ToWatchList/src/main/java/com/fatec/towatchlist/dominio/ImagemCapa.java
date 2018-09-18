@@ -13,6 +13,9 @@ public class ImagemCapa extends EntidadeDominio {
     
     private String path;
 
+    public ImagemCapa () {
+        
+    }
     public ImagemCapa(String path) {
         this.path = path;
     }

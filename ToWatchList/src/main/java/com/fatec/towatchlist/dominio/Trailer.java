@@ -11,6 +11,10 @@ package com.fatec.towatchlist.dominio;
  */
 public class Trailer extends EntidadeDominio {
     
+    public Trailer() {
+        
+    }
+    
     private String url;
 
     public Trailer(String url) {

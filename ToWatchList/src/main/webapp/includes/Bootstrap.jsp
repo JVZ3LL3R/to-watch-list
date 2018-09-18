@@ -15,7 +15,13 @@
         </style>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-        <script file="/js/bootstrap.min.js"></script>
+        
+        <script file="/node_modules/jquery/dist/jquery.js"></script>
+        <script file="/node_modules/popper.js/dist/umd/popper.js"></script>
+        <script file="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+        <script file="/node_modules/bootstrap/compiler/bootstrap.css"></script>
+        
+       <script file="/js/bootstrap.min.js"></script>
         <script file="/js/jquery.min.js"></script>
         <script file="/js/popper.min.js"></script>
         <script file="/js/jquery-3.2.1.slim.min.js"></script>

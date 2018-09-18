@@ -3,20 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.fatec.towatchlist.command;
+package com.fatec.towatchlist.fachada;
 
 import com.fatec.towatchlist.aplicacao.Resultado;
 import com.fatec.towatchlist.dominio.EntidadeDominio;
+import java.util.List;
 
 /**
  *
  * @author josev
  */
-public class SalvarCommand extends AbstractCommand {
-
-    @Override
-    public Resultado execute(EntidadeDominio entidade) {
-        return facade.save(entidade);
-    }
+public interface IFachada {
+    
+    public Resultado save (EntidadeDominio entidade);
+    public Resultado delete (EntidadeDominio entidade);
+    public Resultado edit (EntidadeDominio entidade);
+    public Resultado consult (EntidadeDominio entidade);
     
 }

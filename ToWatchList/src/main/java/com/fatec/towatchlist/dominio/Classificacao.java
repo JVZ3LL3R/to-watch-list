@@ -11,17 +11,21 @@ package com.fatec.towatchlist.dominio;
  */
 public class Classificacao extends EntidadeDominio {
     
-      private int faixaEtaria;
+      private String faixaEtaria;
 
-    public Classificacao(int faixaEtaria) {
+    public Classificacao(String faixaEtaria) {
         this.faixaEtaria = faixaEtaria;
     }
+    
+    public Classificacao () {
+        
+    }
 
-    public int getFaixaEtaria() {
+    public String getFaixaEtaria() {
         return faixaEtaria;
     }
 
-    public void setFaixaEtaria(int faixaEtaria) {
+    public void setFaixaEtaria(String faixaEtaria) {
         this.faixaEtaria = faixaEtaria;
     }
     

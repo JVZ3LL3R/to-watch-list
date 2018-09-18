@@ -11,16 +11,16 @@ import java.util.Date;
  *
  * @author josev
  */
-public class EntidadeDominio {
+public class EntidadeDominio implements IEntidade {
     
-    private int id;
+    private Integer id;
     private Date data;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -12,7 +12,7 @@ package com.fatec.towatchlist.dominio;
 public class Avaliacao {
     
     private String descAvaliacao;
-    private double nota;
+    private Double nota;
 
     public String getDescAvaliacao() {
         return descAvaliacao;
@@ -22,11 +22,11 @@ public class Avaliacao {
         this.descAvaliacao = descAvaliacao;
     }
 
-    public double getNota() {
+    public Double getNota() {
         return nota;
     }
 
-    public void setNota(double nota) {
+    public void setNota(Double nota) {
         this.nota = nota;
     }
     

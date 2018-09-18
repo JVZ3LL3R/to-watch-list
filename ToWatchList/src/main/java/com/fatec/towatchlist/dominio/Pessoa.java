@@ -11,6 +11,9 @@ package com.fatec.towatchlist.dominio;
  */
 public class Pessoa extends EntidadeDominio {
     
+    public Pessoa () {
+        
+    }
     private String nome;
 
     public String getNome() {

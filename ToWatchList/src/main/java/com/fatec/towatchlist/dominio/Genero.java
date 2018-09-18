@@ -11,18 +11,22 @@ package com.fatec.towatchlist.dominio;
  */
 public class Genero extends EntidadeDominio {
     
-    private String tipo;
+    private String nomeGenero;
 
     public Genero(String tipo) {
-        this.tipo = tipo;
+        this.nomeGenero = tipo;
+    }
+    
+    public Genero() {
+        
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getNomeGenero() {
+        return nomeGenero;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setNomeGenero(String nomeGenero) {
+        this.nomeGenero = nomeGenero;
     }
     
     

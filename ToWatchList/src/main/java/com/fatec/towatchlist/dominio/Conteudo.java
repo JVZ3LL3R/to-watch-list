@@ -14,6 +14,8 @@ public class Conteudo extends EntidadeDominio {
     private boolean assistido;
     private Avaliacao avaliacao;
     private FichaTecnica fichaTecnica;
+    private Categoria categoria;
+    private Integer userID;
 
     public Conteudo() {
         this.assistido = false;
@@ -41,5 +43,21 @@ public class Conteudo extends EntidadeDominio {
 
     public void setFichaTecnica(FichaTecnica fichaTecnica) {
         this.fichaTecnica = fichaTecnica;
+    }
+    
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+    
+    public Integer getUserID() {
+        return userID;
+    }
+
+    public void setUserID(Integer userID) {
+        this.userID = userID;
     }
 }
